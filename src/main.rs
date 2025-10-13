@@ -1,32 +1,9 @@
-use serde::{Deserialize};
+use serde::Deserialize;
 use std::fs;
-
-#[derive(Debug, Deserialize)]
-struct DatabaseConfig {
-    host: String,
-    port: u16,
-    username: String,
-    password: String,
-    database_name: String,
-}
-
-#[derive(Debug, Deserialize)]
-struct ServerConfig {
-    listen_address: String,
-    listen_port: u16,
-    max_connections: usize,
-    timeout_seconds: u64,
-}
 
 #[derive(Debug, Deserialize)]
 struct AppConfig {
     app_name: String,
-    version: String,
-    unused: String,
-    debug_mode: bool,
-    database: DatabaseConfig,
-    server: ServerConfig,
-    features: Vec<String>,
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -45,14 +22,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Demonstrate accessing individual fields
     println!("=== Accessing Configuration Values ===");
-    println!("App Name: {}", config.app_name);
-    println!("Version: {}", config.version);
-    println!("Debug Mode: {}", config.debug_mode);
-    println!("Database Host: {}", config.database.host);
-    println!("Database Port: {}", config.database.port);
-    println!("Server Listen Address: {}", config.server.listen_address);
-    println!("Max Connections: {}", config.server.max_connections);
-    println!("Features: {:?}", config.features);
+    // println!("App Name: {}", config.app_name);
 
     Ok(())
 }
